@@ -23,7 +23,7 @@ Maven:
 	    <version>2.2</version>
 	</dependency>
 
-For Gradle:
+Gradle:
 
 	compile("com.brsanthu:migbase64:2.2")
 
