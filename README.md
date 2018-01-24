@@ -34,6 +34,10 @@ However if the issue is related to artificat availability in Maven central, plea
 As groupId, I would have preferred to use migcomponents.com (due to http://www.migcomponents.com) but decided to use my own groupId brsanthu.com 
 just so I can easily release artifacts into Maven Central using my existing account at https://oss.sonatype.org.
 
+Javadocs
+==
+See Javadocs [here](https://www.javadoc.io/doc/com.brsanthu/migbase64)
+
 Performance
 ==
 __from http://migbase64.sourceforge.net/__
