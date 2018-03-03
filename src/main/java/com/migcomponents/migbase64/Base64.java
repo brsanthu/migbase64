@@ -2,6 +2,8 @@ package com.migcomponents.migbase64;
 
 import java.util.Arrays;
 
+import static com.migcomponents.migbase64.Dictionary.CA;
+
 /** A very fast and memory efficient class to encode and decode to and from BASE64 in full accordance
  * with RFC 2045.<br><br>
  * On Windows XP sp1 with 1.4.2_04 and later ;), this encoder and decoder is about 10 times faster
@@ -72,11 +74,10 @@ import java.util.Arrays;
 
 public class Base64
 {
-	private static final char[] CA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".toCharArray();
-	private static final int[] IA = new int[256];
+	private static final byte[] IA = new byte[256];
 	static {
-		Arrays.fill(IA, -1);
-		for (int i = 0, iS = CA.length; i < iS; i++)
+		Arrays.fill(IA, (byte) -1);
+		for (byte i = 0, iS = (byte) CA.length; i < iS; i++)
 			IA[CA[i]] = i;
 		IA['='] = 0;
 	}
@@ -110,10 +111,10 @@ public class Base64
 			int i = (sArr[s++] & 0xff) << 16 | (sArr[s++] & 0xff) << 8 | (sArr[s++] & 0xff);
 
 			// Encode the int into four chars
-			dArr[d++] = CA[(i >>> 18) & 0x3f];
-			dArr[d++] = CA[(i >>> 12) & 0x3f];
-			dArr[d++] = CA[(i >>> 6) & 0x3f];
-			dArr[d++] = CA[i & 0x3f];
+			dArr[d++] = (char) CA[(i >>> 18) & 0x3f];
+			dArr[d++] = (char) CA[(i >>> 12) & 0x3f];
+			dArr[d++] = (char) CA[(i >>> 6) & 0x3f];
+			dArr[d++] = (char) CA[i & 0x3f];
 
 			// Add optional line separator
 			if (lineSep && ++cc == 19 && d < dLen - 2) {
@@ -130,9 +131,9 @@ public class Base64
 			int i = ((sArr[eLen] & 0xff) << 10) | (left == 2 ? ((sArr[sLen - 1] & 0xff) << 2) : 0);
 
 			// Set last four chars
-			dArr[dLen - 4] = CA[i >> 12];
-			dArr[dLen - 3] = CA[(i >>> 6) & 0x3f];
-			dArr[dLen - 2] = left == 2 ? CA[i & 0x3f] : '=';
+			dArr[dLen - 4] = (char) CA[i >> 12];
+			dArr[dLen - 3] = (char) CA[(i >>> 6) & 0x3f];
+			dArr[dLen - 2] = (char) (left == 2 ? CA[i & 0x3f] : '=');
 			dArr[dLen - 1] = '=';
 		}
 		return dArr;

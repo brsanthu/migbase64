@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.migcomponents.migbase64.Base64;
+import static com.migcomponents.migbase64.Dictionary.CA;
 
 /**
  * Base64 for InputStream<br/> Licence = BSD
@@ -15,9 +15,6 @@ import com.migcomponents.migbase64.Base64;
  */
 public class Base64IO
 {
-
-    private static final byte[] CA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-            .getBytes();
 
     private static final int _8_BIT = 0xff;
 
